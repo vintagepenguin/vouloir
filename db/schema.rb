@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150204025044) do
+ActiveRecord::Schema.define(version: 20150204032415) do
 
   create_table "daily_reports", force: true do |t|
     t.datetime "created_at"
@@ -21,17 +21,33 @@ ActiveRecord::Schema.define(version: 20150204025044) do
   create_table "objectives", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "long_term_goal"
+    t.time     "start_date"
+    t.time     "end_date"
+    t.boolean  "is_achieved"
   end
 
   create_table "skills", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "skill_name"
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.boolean  "is_accomplished"
+    t.integer  "objective_id"
   end
 
   create_table "tasks", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "skill_id"
+    t.time     "start_date"
+    t.time     "end_date"
+    t.boolean  "is_achieved"
+    t.string   "task_name"
   end
+
+  add_index "tasks", ["skill_id"], name: "index_tasks_on_skill_id"
 
   create_table "weekly_reports", force: true do |t|
     t.datetime "created_at"
