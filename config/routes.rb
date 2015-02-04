@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :weekly_reports
+
   resources :daily_reports
 
   resources :tasks
